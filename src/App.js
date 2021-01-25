@@ -1,22 +1,25 @@
-import logo from './logo.svg';
+import React from 'react';
+import styled from 'styled-components';
 import './App.css';
+import ReactSlick from "./carousels/ReactSlick";
+import PureReactCarousel from "./carousels/PureReactCarousel";
+// Import css files
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import 'pure-react-carousel/dist/react-carousel.es.css';
+
+
+const Container = styled.div`
+  width: 800px;
+  border: 1px solid black;
+`;
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Container><div>React Slick<ReactSlick /></div></Container>
+        <Container><div>Pure React Carousel<PureReactCarousel /></div></Container>
       </header>
     </div>
   );
