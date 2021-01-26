@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Slider from "react-slick";
 import styled from 'styled-components';
 import CARD_DATA from "../utils/cardContent";
@@ -17,17 +17,27 @@ const Arrow = styled.div`
 
 
 const ReactSlick = () => {
+  const [fade, setFade] = useState(false);
+  const beforeChange = (oldIndex, newIndex) => {
+    if (newIndex + 3 === CARD_DATA.length - 1) {
+      setFade(newIndex + 3);
+    } else {
+      setFade(false);
+    }
+  };
   const settings = {
       dots: false,
       slidesToShow: 4,
       slidesToScroll: 1,
       nextArrow: <Arrow>&gt;</Arrow>,
       prevArrow: <Arrow>&lt;</Arrow>,
+      infinite: false,
+      beforeChange,
     };
   return (
     <div>
       <StyledSlider {...settings}>
-        {map(CARD_DATA, (data) => <Card key={data.name} name={data.name} />)}
+        {map(CARD_DATA, (data, index) => <Card fade={fade === index} key={data.name} name={data.name} />)}
       </StyledSlider>
     </div>
   );
